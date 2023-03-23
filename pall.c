@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * pall - function that prints all elements on the stack
+ * m_pall - function that prints all elements on the stack
  * @stack: pointer to head of the stack
  * @line_number: where the instruction appears
  * Description: 0. push, pall
@@ -9,7 +9,7 @@
  * 1. upon success, nothing
  * 2. upon fail, EXIT_FAILURE
  */
-void get_pall(stack_t **stack, unsigned int line_number)
+void m_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current;
 
