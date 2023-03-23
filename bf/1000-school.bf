@@ -2,7 +2,6 @@
 -[--->+<]>++.		PRINT 'C'
 ---.			PRINT 'H'
 ----------.		PRINT 'O'
-+++.			PRINT 'e'
 +++++++++++++.		PRINT 'O'
 ++.			PRINT 'L'
 >[-]++++++++++.		PRINT '\n'
