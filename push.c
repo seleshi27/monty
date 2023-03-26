@@ -1,82 +1,48 @@
 #include "monty.h"
-
 /**
- * m_push - function that pushes an element onto top of the stack
- * @stack: pointer to the top of the stack
- * @line_number: where the line number appears
- * @temp: Pointer to instruction
- * Description: 0. push, pall
- * Return: see below
- * 1. upon success, nothing
- * 2. upon fail, EXIT_FAILURE
+ * check_digit - check if string is a number
+ * @param: param to push
+ * @line_count: current line number
+ * Return: number
  */
-void m_push(stack_t **stack, unsigned int line_number, char *temp)
+int check_digit(char *param, unsigned int line_count)
 {
+	int num;
 
-	stack_t *new_top;
-
-	(void)line_number;
-
-	if (temp == NULL || _isdigit(temp) == 1)
+	num = atoi(param);
+	if (num == 0 && strcmp(param, "0") != 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		fclose(file);
-		get_free(*stack);
-		exit(EXIT_FAILURE);
-		if (_isdigit(temp) == 1)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			fclose(file);
-			get_free(*stack);
-			exit(EXIT_FAILURE);
-		}
-	}
-	new_top = malloc(sizeof(stack_t));
-	if (new_top == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		fclose(file);
+		dprintf(2, "L%u: usage: push integer\n", line_count);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
-	new_top->n = atoi(temp);
-	new_top->next = NULL;
-	new_top->prev = NULL;
-	if (*stack)
-	{
-		new_top->next = *stack;
-		(*stack)->prev = new_top;
-		*stack = new_top;
-	}
-	*stack = new_top;
+	return (num);
 }
 
-
 /**
- *  _isdigit - Finds if char is a digit or not
- *
- *  @str: Character passed in
- *
- *  Return: 1 for digit, 0 if not
+ * m_push - it pushes an element to the stack.
+ * @node: pointer to head
+ * @line_count: current line number
+ * Return: void function
  */
-
-int _isdigit(char *str)
+void m_push(stack_t **node, unsigned int line_count)
 {
+	int num;
+	char *param;
 
-	int i = 0;
+	param = strtok(NULL, SEPARATORS);
 
-
-	if (str[i] == '-')
+	if (!param)
 	{
-		i++;
+		dprintf(2, "L%u: usage: push integer\n", line_count);
+		free_all();
+		exit(EXIT_FAILURE);
 	}
-	while (str[i] != '\0')
+	num = check_digit(param, line_count);
+	if (!add_node(node, num))
 	{
-		if (!isdigit(str[i]))
-		{
-			return (1);
-		}
-		i++;
+		dprintf(2, "Error: malloc failed\n");
+		free_all();
+		exit(EXIT_FAILURE);
 	}
-
-	return (0);
 }
