@@ -1,10 +1,12 @@
 #include "monty.h"
+
 /**
  * check_digit - check if string is a number
  * @param: param to push
  * @line_count: current line number
  * Return: number
  */
+
 int check_digit(char *param, unsigned int line_count)
 {
 	int num;
