@@ -1,26 +1,20 @@
 #include "monty.h"
-
 /**
- * m_pall - function that prints all elements on the stack
- * @stack: pointer to head of the stack
- * @line_number: where the instruction appears
- * Description: 0. push, pall
- * Return: see below
- * 1. upon success, nothing
- * 2. upon fail, EXIT_FAILURE
+ * m_pall - print the stack
+ * @head: doble pointer to head of d linked list
+ * @line_count: current line of monty file
+ * Return: returns void
  */
-void m_pall(stack_t **stack, unsigned int line_number)
+void m_pall(stack_t **head, __attribute__((unused)) unsigned int line_count)
 {
-	stack_t *current;
+	stack_t *temp = *head;
 
-	(void)line_number;
-
-	current = *stack;
-
-	while (current != NULL)
+	if (*head && head)
 	{
-		printf("%d", current->n);
-		current = current->next;
-		printf("\n");
+		while (temp)
+		{
+			printf("%d\n", temp->n);
+			temp = temp->next;
+		}
 	}
 }
